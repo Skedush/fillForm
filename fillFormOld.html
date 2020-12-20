@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>健康症状自检表--问卷调查</title>
+  <head>
+    <title>身体症状自检表--问卷调查</title>
     <!--[if lt IE9]>
       <script>
         (function () {
@@ -25,1437 +24,1556 @@
     <![endif]-->
 
     <meta charset="UTF-8" />
-    <meta name="viewport"
-        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
     <!-- <script src="./js/jqyery2.1.1.js"></script> -->
     <script src="./js/jquery1.11.0.js"></script>
 
     <script language="javascript">
-        var entry_info = 0;
+      var entry_info = 0;
+      var checkBox;
+      var entryNum = 0;
+      var checkList = [
+        {
+          id: 46,
+          title: "记忆下降",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 47,
+          title: "面颊泛红",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 48,
+          title: "眼痒|血丝",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 49,
+          title: "眼酸|眼胀|眼花",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 50,
+          title: "口干|口渴|唇裂",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 51,
+          title: "舌硬|口歪",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 52,
+          title: "口|舌溃疡",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 53,
+          title: "口味重|舌苔厚",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 54,
+          title: "地图舌|舌白点",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 55,
+          title: "舌质暗紫|锯齿",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 56,
+          title: "心悸|心率异常",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 57,
+          title: "胸闷|胸痛|胸胀",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 58,
+          title: "心绞痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 59,
+          title: "心跳快|慢",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 60,
+          title: "心烦狂躁|眼斜",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 61,
+          title: "手足麻木|发青",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 62,
+          title: "手脚热|凉|腿胀",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 63,
+          title: "腿血管瘤|浮肿",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 64,
+          title: "皮肤易青|脱发",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 65,
+          title: "失眠多梦|易醒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 66,
+          title: "唇白|唇青|唇麻",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 67,
+          title: "迟钝|懒言|结巴",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 68,
+          title: "头发稀|干|脱发",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 69,
+          title: "头痛|脑鸣|头晕",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 70,
+          title: "思维断电|偏头疼",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 71,
+          title: "晕车|晕机",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 72,
+          title: "冒冷汗|后背凉",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 73,
+          title: "夜盲症|眼疲劳",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 74,
+          title: "眼屎多|麦粒肿",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 75,
+          title: "眼仁黄|眉骨痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 76,
+          title: "眼干涩|飞影",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 77,
+          title: "视力模糊|无泪",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 78,
+          title: "眼怕光|流泪",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 79,
+          title: "眼圈黑|脂肪粒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 80,
+          title: "起夜|尿频|尿急",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 81,
+          title: "耳内潮湿|脓",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 82,
+          title: "耳屎多|痛|痒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 83,
+          title: "耳鸣|耳聋|下降",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 84,
+          title: "尿痛|脓尿怪味",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 85,
+          title: "睾丸肿块|疝气",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 86,
+          title: "肛门瘙痒|便血",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 87,
+          title: "性情急|易怒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 88,
+          title: "抑郁症|无激情",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 89,
+          title: "手足抽搐|手抖",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 90,
+          title: "感冒时间长",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 91,
+          title: "形体消瘦",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 92,
+          title: "关节疼|关节肿",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 94,
+          title: "口苦|喉痒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 95,
+          title: "右腹肝区闷痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 96,
+          title: "易落枕|脖子硬",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 97,
+          title: "右肩酸|麻|痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 98,
+          title: "皮肤痒|后背痘",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 99,
+          title: "乳头凹陷|流脓",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 100,
+          title: "乳房肿块|增生",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 101,
+          title: "头部怕冷|头麻",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 102,
+          title: "自汗|多汗|盗汗",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 103,
+          title: "皮肤干燥",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 104,
+          title: "打喷嚏",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 105,
+          title: "打鼾|嗓子干",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 106,
+          title: "鼻塞流涕|流血",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 107,
+          title: "牙齿出血|肿",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 108,
+          title: "嗅觉不灵",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 109,
+          title: "酒糟鼻",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 110,
+          title: "哮喘|鼻炎",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 111,
+          title: "咳嗽|痰多",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 112,
+          title: "痰黄|黑|白|血",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 113,
+          title: "支气管炎",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 114,
+          title: "声音嘶哑",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 115,
+          title: "脱肛|痔疮",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 116,
+          title: "口臭|咸|腥",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 117,
+          title: "脚气|臭|出水",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 118,
+          title: "低热",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 119,
+          title: "不感冒|易感冒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 120,
+          title: "便溏不净|便秘",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 121,
+          title: "颈部水牛背",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 122,
+          title: "叹气|气短喘",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 123,
+          title: "游走性脂肪粒",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 124,
+          title: "易打哈欠",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 125,
+          title: "腰酸痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 126,
+          title: "脊椎僵硬|疼痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 127,
+          title: "肩颈疼痛",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 128,
+          title: "面偏黑|眼袋黑",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 129,
+          title: "眼圈浮肿",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 130,
+          title: "口腔异味",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 131,
+          title: "牙齿松动|虫牙",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 132,
+          title: "咽干异物感",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 133,
+          title: "性欲低",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 134,
+          title: "尿分叉|多沫",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 135,
+          title: "尿不净|尿血",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 136,
+          title: "尿床",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 137,
+          title: "尿等待|浑浊",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 138,
+          title: "尿道口灼烧",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 139,
+          title: "尿道发炎",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 140,
+          title: "无小便|次数少",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 141,
+          title: "平衡差|易摔跤",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 142,
+          title: "静脉曲张",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 143,
+          title: "冻疮|四肢厥冷",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 144,
+          title: "四肢无力",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 145,
+          title: "脚后跟疼",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 146,
+          title: "指甲凹|竖纹",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 147,
+          title: "无半月痕|少",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 148,
+          title: "个头矮|发育慢",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 149,
+          title: "白发|鬼剃头",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 150,
+          title: "体重突增|减",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 151,
+          title: "不孕不育",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 152,
+          title: "流产|死胎",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 153,
+          title: "眉毛脱|睫毛脱",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 154,
+          title: "淋巴肿大",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 155,
+          title: "嗜睡|失眠",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 156,
+          title: "头|面油腻",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 157,
+          title: "面黄|长斑",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 158,
+          title: "痤疮|长痘",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 159,
+          title: "贫血|低血压|低血糖",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 160,
+          title: "手指长倒刺",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 161,
+          title: "磨牙|指甲断",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 162,
+          title: "打嗝|恶心",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 163,
+          title: "胃寒|胃胀",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 164,
+          title: "食欲差|易饱",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 165,
+          title: "消化不良|反酸",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 166,
+          title: "偏食|厌食",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 167,
+          title: "口甜果味|偏咸",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 168,
+          title: "食欲过旺",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 169,
+          title: "腹胀屁多|臭",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 170,
+          title: "大便不成形",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 171,
+          title: "身体异味",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 172,
+          title: "肥胖|将军肚",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 173,
+          title: "容易扭伤",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 174,
+          title: "过敏性鼻炎",
+          remark: "",
+          sort: 90,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 210,
+          title: "过敏性咽炎",
+          remark: "",
+          sort: 91,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 175,
+          title: "各种过敏",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 176,
+          title: "手心出汗",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 177,
+          title: "黑痣变大|变多",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 178,
+          title: "蜘蛛痣",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 179,
+          title: "皮肤红点",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 180,
+          title: "游走性疼痛",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 181,
+          title: "经量多|少",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 182,
+          title: "提前|推后",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 183,
+          title: "经期急躁",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 184,
+          title: "月经胸胀",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 185,
+          title: "经期厌食",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 186,
+          title: "经期浮肿",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 187,
+          title: "小腹怕凉",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 188,
+          title: "白带色黄",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 189,
+          title: "白带粘稠",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 190,
+          title: "白带多",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 191,
+          title: "白带稀水",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 192,
+          title: "白带腥臭",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 193,
+          title: "经期困倦",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 194,
+          title: "经期时长",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 195,
+          title: "痛经",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 196,
+          title: "月经长痘",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 197,
+          title: "月经腰痛",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 198,
+          title: "小腹闷痛",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 199,
+          title: "经期头痛",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 200,
+          title: "产后脱发",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 201,
+          title: "产后抑郁",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 202,
+          title: "产后色斑",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 203,
+          title: "经期怕冷",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 204,
+          title: "阴道异味",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 205,
+          title: "阴道瘙痒",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+        {
+          id: 206,
+          title: "阴道血丝",
+          remark: "",
+          sort: 92,
+          category: { id: 3, name: "症状" },
+        },
+      ];
 
-        var checkList = [
-            {
-                id: 46,
-                title: "记忆下降",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 47,
-                title: "面颊泛红",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 48,
-                title: "眼痒|血丝",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 49,
-                title: "眼酸|眼胀|眼花",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 50,
-                title: "口干|口渴|唇裂",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 51,
-                title: "舌硬|口歪",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 52,
-                title: "口|舌溃疡",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 53,
-                title: "口味重|舌苔厚",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 54,
-                title: "地图舌|舌白点",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 55,
-                title: "舌质暗紫|锯齿",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 56,
-                title: "心悸|心率异常",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 57,
-                title: "胸闷|胸痛|胸胀",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 58,
-                title: "心绞痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 59,
-                title: "心跳快|慢",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 60,
-                title: "心烦狂躁|眼斜",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 61,
-                title: "手足麻木|发青",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 62,
-                title: "手脚热|凉|腿胀",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 63,
-                title: "腿血管瘤|浮肿",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 64,
-                title: "皮肤易青|脱发",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 65,
-                title: "失眠多梦|易醒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 66,
-                title: "唇白|唇青|唇麻",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 67,
-                title: "迟钝|懒言|结巴",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 68,
-                title: "头发稀|干|脱发",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 69,
-                title: "头痛|脑鸣|头晕",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 70,
-                title: "思维断电|偏头疼",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 71,
-                title: "晕车|晕机",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 72,
-                title: "冒冷汗|后背凉",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 73,
-                title: "夜盲症|眼疲劳",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 74,
-                title: "眼屎多|麦粒肿",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 75,
-                title: "眼仁黄|眉骨痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 76,
-                title: "眼干涩|飞影",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 77,
-                title: "视力模糊|无泪",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 78,
-                title: "眼怕光|流泪",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 79,
-                title: "眼圈黑|脂肪粒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 80,
-                title: "起夜|尿频|尿急",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 81,
-                title: "耳内潮湿|脓",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 82,
-                title: "耳屎多|痛|痒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 83,
-                title: "耳鸣|耳聋|下降",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 84,
-                title: "尿痛|脓尿怪味",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 85,
-                title: "睾丸肿块|疝气",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 86,
-                title: "肛门瘙痒|便血",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 87,
-                title: "性情急|易怒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 88,
-                title: "抑郁症|无激情",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 89,
-                title: "手足抽搐|手抖",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 90,
-                title: "感冒时间长",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 91,
-                title: "形体消瘦",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 92,
-                title: "关节疼|关节肿",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 94,
-                title: "口苦|喉痒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 95,
-                title: "右腹肝区闷痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 96,
-                title: "易落枕|脖子硬",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 97,
-                title: "右肩酸|麻|痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 98,
-                title: "皮肤痒|后背痘",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 99,
-                title: "乳头凹陷|流脓",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 100,
-                title: "乳房肿块|增生",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 101,
-                title: "头部怕冷|头麻",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 102,
-                title: "自汗|多汗|盗汗",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 103,
-                title: "皮肤干燥",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 104,
-                title: "打喷嚏",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 105,
-                title: "打鼾|嗓子干",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 106,
-                title: "鼻塞流涕|流血",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 107,
-                title: "牙齿出血|肿",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 108,
-                title: "嗅觉不灵",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 109,
-                title: "酒糟鼻",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 110,
-                title: "哮喘|鼻炎",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 111,
-                title: "咳嗽|痰多",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 112,
-                title: "痰黄|黑|白|血",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 113,
-                title: "支气管炎",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 114,
-                title: "声音嘶哑",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 115,
-                title: "脱肛|痔疮",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 116,
-                title: "口臭|咸|腥",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 117,
-                title: "脚气|臭|出水",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 118,
-                title: "低热",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 119,
-                title: "不感冒|易感冒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 120,
-                title: "便溏不净|便秘",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 121,
-                title: "颈部水牛背",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 122,
-                title: "叹气|气短喘",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 123,
-                title: "游走性脂肪粒",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 124,
-                title: "易打哈欠",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 125,
-                title: "腰酸痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 126,
-                title: "脊椎僵硬|疼痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 127,
-                title: "肩颈疼痛",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 128,
-                title: "面偏黑|眼袋黑",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 129,
-                title: "眼圈浮肿",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 130,
-                title: "口腔异味",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 131,
-                title: "牙齿松动|虫牙",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 132,
-                title: "咽干异物感",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 133,
-                title: "性欲低",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 134,
-                title: "尿分叉|多沫",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 135,
-                title: "尿不净|尿血",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 136,
-                title: "尿床",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 137,
-                title: "尿等待|浑浊",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 138,
-                title: "尿道口灼烧",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 139,
-                title: "尿道发炎",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 140,
-                title: "无小便|次数少",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 141,
-                title: "平衡差|易摔跤",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 142,
-                title: "静脉曲张",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 143,
-                title: "冻疮|四肢厥冷",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 144,
-                title: "四肢无力",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 145,
-                title: "脚后跟疼",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 146,
-                title: "指甲凹|竖纹",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 147,
-                title: "无半月痕|少",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 148,
-                title: "个头矮|发育慢",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 149,
-                title: "白发|鬼剃头",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 150,
-                title: "体重突增|减",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 151,
-                title: "不孕不育",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 152,
-                title: "流产|死胎",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 153,
-                title: "眉毛脱|睫毛脱",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 154,
-                title: "淋巴肿大",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 155,
-                title: "嗜睡|失眠",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 156,
-                title: "头|面油腻",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 157,
-                title: "面黄|长斑",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 158,
-                title: "痤疮|长痘",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 159,
-                title: "贫血|低血压|低血糖",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 160,
-                title: "手指长倒刺",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 161,
-                title: "磨牙|指甲断",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 162,
-                title: "打嗝|恶心",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 163,
-                title: "胃寒|胃胀",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 164,
-                title: "食欲差|易饱",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 165,
-                title: "消化不良|反酸",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 166,
-                title: "偏食|厌食",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 167,
-                title: "口甜果味|偏咸",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 168,
-                title: "食欲过旺",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 169,
-                title: "腹胀屁多|臭",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 170,
-                title: "大便不成形",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 171,
-                title: "身体异味",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 172,
-                title: "肥胖|将军肚",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 173,
-                title: "容易扭伤",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 174,
-                title: "过敏性鼻炎",
-                remark: "",
-                sort: 90,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 210,
-                title: "过敏性咽炎",
-                remark: "",
-                sort: 91,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 175,
-                title: "各种过敏",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 176,
-                title: "手心出汗",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 177,
-                title: "黑痣变大|变多",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 178,
-                title: "蜘蛛痣",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 179,
-                title: "皮肤红点",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 180,
-                title: "游走性疼痛",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 181,
-                title: "经量多|少",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 182,
-                title: "提前|推后",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 183,
-                title: "经期急躁",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 184,
-                title: "月经胸胀",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 185,
-                title: "经期厌食",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 186,
-                title: "经期浮肿",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 187,
-                title: "小腹怕凉",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 188,
-                title: "白带色黄",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 189,
-                title: "白带粘稠",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 190,
-                title: "白带多",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 191,
-                title: "白带稀水",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 192,
-                title: "白带腥臭",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 193,
-                title: "经期困倦",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 194,
-                title: "经期时长",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 195,
-                title: "痛经",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 196,
-                title: "月经长痘",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 197,
-                title: "月经腰痛",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 198,
-                title: "小腹闷痛",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 199,
-                title: "经期头痛",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 200,
-                title: "产后脱发",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 201,
-                title: "产后抑郁",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 202,
-                title: "产后色斑",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 203,
-                title: "经期怕冷",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 204,
-                title: "阴道异味",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 205,
-                title: "阴道瘙痒",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-            {
-                id: 206,
-                title: "阴道血丝",
-                remark: "",
-                sort: 92,
-                category: { id: 3, name: "症状" },
-            },
-        ];
-
-        function CheckForm() {
-            if (entry_info === 0) {
-                alert("错误，请用复制或者转发的连接进入本页面");
-                return false;
-            }
-            if (document.myform.name.value == "") {
-                alert("姓名：不能为空");
-                document.myform.name.focus();
-                return false;
-            }
-            var Input1 = false;
-            for (i = 0; i < document.myform.gender.length; i++) {
-                Input1 = Input1 || document.myform.gender[i].checked;
-            }
-            if (Input1 == false) {
-                alert("请选择性别：");
-                document.myform.gender[0].focus();
-                return Input1;
-            }
-            if (isNaN(myform.age.value)) {
-                alert("请用数字填写年龄：");
-                document.myform.age.focus();
-                return false;
-            }
-            if (document.myform.phone.value == "") {
-                alert("电话：不能为空");
-                document.myform.phone.focus();
-                return false;
-            }
-            submit();
+      function CheckForm() {
+        if (entry_info === 0) {
+          alert("错误，请用复制或者转发的连接进入本页面");
+          return false;
         }
-        function submit() {
-            var obj = {}; //分配内存空间
-            const data = $("#myform").serializeArray();
-            console.log("data: ", data);
-            for (var i = 0; i < data.length; i++) {
-                //数据类型为"自定义类的字段名=数据"后台会自动对数据进行匹配
-                if (obj[data[i].name]) {
-                    obj[data[i].name].push(data[i].value);
-                } else if (data[i].name === 'entry_Ids') {
-                    obj[data[i].name] = [data[i].value];
-                } else {
-                    obj[data[i].name] = data[i].value;
-                }
-            }
-            obj.entry_info = entry_info;
-            ajax({
-                //几个参数需要注意一下
-                type: "POST", //方法类型
-                dataType: "json", //预期服务器返回的数据类型
-                url: "https://w.cjsq.net/userEntry/", //url
-                data: JSON.stringify(obj),
-                success: function (result) {
-                    console.log(result); //打印服务端返回的数据(调试用)
-                    if (result.code == 201) {
-                        alert("提交成功！");
-                        window.location.replace("https://f.cjsq.net/#/dashboard/success");
-                    }
-                },
-                error: function () {
-                    alert("异常！");
-                },
-            });
+        if (document.myform.name.value == "") {
+          alert("姓名：不能为空");
+          document.myform.name.focus();
+          return false;
         }
+        var Input1 = false;
+        for (i = 0; i < document.myform.gender.length; i++) {
+          Input1 = Input1 || document.myform.gender[i].checked;
+        }
+        if (Input1 == false) {
+          alert("请选择性别：");
+          document.myform.gender[0].focus();
+          return Input1;
+        }
+        if (isNaN(myform.age.value)) {
+          alert("请用数字填写年龄：");
+          document.myform.age.focus();
+          return false;
+        }
+        if (document.myform.phone.value == "") {
+          alert("ID：不能为空");
+          document.myform.phone.focus();
+          return false;
+        }
+        submit();
+      }
+      function submit() {
+        var obj = {}; //分配内存空间
+        const data = $("#myform").serializeArray();
+        console.log("data: ", data);
+        for (var i = 0; i < data.length; i++) {
+          //数据类型为"自定义类的字段名=数据"后台会自动对数据进行匹配
+          if (obj[data[i].name]) {
+            obj[data[i].name].push(data[i].value);
+          } else if (data[i].name === "entry_Ids") {
+            obj[data[i].name] = [data[i].value];
+          } else {
+            obj[data[i].name] = data[i].value;
+          }
+        }
+        obj.entry_info = entry_info;
+        ajax({
+          //几个参数需要注意一下
+          type: "POST", //方法类型
+          dataType: "json", //预期服务器返回的数据类型
+          url: "https://w.cjsq.net/userEntry/", //url
+          data: JSON.stringify(obj),
+          success: function (result) {
+            console.log(result); //打印服务端返回的数据(调试用)
+            if (result.code == 201) {
+              alert("提交成功！");
+              window.location.replace(
+                "https://f.cjsq.net/#/dashboard/success?num=" +
+                  obj.entry_Ids.length
+              );
+            }
+          },
+          error: function () {
+            alert("异常！");
+          },
+        });
+      }
 
-        function ajax(options) {
-            options.type = (options.type || "GET").toUpperCase();
-            options.dataType = options.dataType || "json";
-            let params = options.data;
+      function ajax(options) {
+        options.type = (options.type || "GET").toUpperCase();
+        options.dataType = options.dataType || "json";
+        let params = options.data;
 
-            //创建-第一步
-            var xhr;
-            //非IE6
-            if (window.XMLHttpRequest) {
-                xhr = new XMLHttpRequest();
+        //创建-第一步
+        var xhr;
+        //非IE6
+        if (window.XMLHttpRequest) {
+          xhr = new XMLHttpRequest();
+        } else {
+          //ie6及其以下版本浏览器
+          xhr = ActiveXObject("Microsoft.XMLHTTP");
+        }
+        //接收-第三步
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            var status = xhr.status;
+            if (status >= 200 && status < 300) {
+              options.success &&
+                options.success(JSON.parse(xhr.responseText), xhr.responseXML);
             } else {
-                //ie6及其以下版本浏览器
-                xhr = ActiveXObject("Microsoft.XMLHTTP");
+              options.error && options.error(status);
             }
-            //接收-第三步
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    var status = xhr.status;
-                    if (status >= 200 && status < 300) {
-                        options.success &&
-                            options.success(JSON.parse(xhr.responseText), xhr.responseXML);
-                    } else {
-                        options.error && options.error(status);
-                    }
-                }
-            };
+          }
+        };
 
-            //连接和发送-第二步
-            if (options.type == "GET") {
-                xhr.open("GET", options.url + "?" + params, true);
-                xhr.send(null);
-            } else if (options.type == "POST") {
-                xhr.open("POST", options.url, true);
-                //设置表单提交时的内容类型
-                xhr.setRequestHeader(
-                    "Content-type",
-                    "application/json; charset=utf-8"
-                );
-                xhr.send(params);
-            }
+        //连接和发送-第二步
+        if (options.type == "GET") {
+          xhr.open("GET", options.url + "?" + params, true);
+          xhr.send(null);
+        } else if (options.type == "POST") {
+          xhr.open("POST", options.url, true);
+          //设置表单提交时的内容类型
+          xhr.setRequestHeader(
+            "Content-type",
+            "application/json; charset=utf-8"
+          );
+          xhr.send(params);
         }
+      }
 
-        document.onready = init();
+      document.onready = init();
 
-        function init() {
-            const reg = new RegExp("(^|&)" + "id" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            const r = window.location.search.substr(1).match(reg); //匹配目标参数
-            let id = 1;
-            if (r) {
-                id = decodeURI(r[2]);
-                entry_info = id;
-            } else {
-                alert("错误，请用复制或者转发的连接进入本页面");
-                return;
-            }
-            ajax({
-                url: "https://w.cjsq.net/entryInfo/" + id + "/",
-                type: "GET",
-                dataType: "json",
-                data: "",
-                success: function (response, xml) {
-                    checkList = response.data.entrys;
-                    var checkBoxs = checkList.map(function (item) {
-                        return (
-                            '<label><input name="entry_Ids"  type="checkbox"   value=' +
-                            item.id +
-                            " />" +
-                            item.title +
-                            "</label><hr />"
-                        );
-                    });
-                    var checkBoxElement = document.getElementById("checkBox");
-                    checkBoxElement.innerHTML = checkBoxs.join("");
-                },
-                error: function (status) {
-                    //失败后执行的代码
-                },
-            });
+      function init() {
+        const reg = new RegExp("(^|&)" + "id" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        const r = window.location.search.substr(1).match(reg); //匹配目标参数
+        let id = 1;
+        if (r) {
+          id = decodeURI(r[2]);
+          entry_info = id;
+        } else {
+          alert("错误，请用复制或者转发的连接进入本页面");
+          return;
         }
-
-        function onload() {
+        ajax({
+          url: "https://w.cjsq.net/entryInfo/" + id + "/",
+          type: "GET",
+          dataType: "json",
+          data: "",
+          success: function (response, xml) {
+            checkList = response.data.entrys;
             var checkBoxs = checkList.map(function (item) {
-                return (
-                    '<label><input name="entry_Ids"  type="checkbox"   value=' +
-                    item.id +
-                    " />" +
-                    item.title +
-                    "</label><hr />"
-                );
+              return (
+                '<label><input name="entry_Ids"  type="checkbox"   value=' +
+                item.id +
+                " />" +
+                item.title +
+                "</label><hr />"
+              );
             });
             var checkBoxElement = document.getElementById("checkBox");
             checkBoxElement.innerHTML = checkBoxs.join("");
-        }
+            checkBox = $("input[name='entry_Ids']");
+            checkBox.change(function () {
+              var check_arr = [];
+              for (var i = 0; i < checkBox.length; i++) {
+                if (checkBox[i].checked) check_arr.push(checkBox[i].value);
+              }
+              var checkBoxNumElement = document.getElementById("checkBoxNum");
+              checkBoxNumElement.innerHTML =
+                "您共选择了" + check_arr.length + "个症状";
+            });
+          },
+          error: function (status) {
+            //失败后执行的代码
+          },
+        });
+      }
+
+      function onload() {
+        var checkBoxs = checkList.map(function (item) {
+          return (
+            '<label><input name="entry_Ids"  type="checkbox"   value=' +
+            item.id +
+            " />" +
+            item.title +
+            "</label><hr />"
+          );
+        });
+        var checkBoxElement = document.getElementById("checkBox");
+        checkBoxElement.innerHTML = checkBoxs.join("");
+        checkBox = $("input[name='entry_Ids']");
+        checkBox.change(function (value) {
+          var check_arr = [];
+          for (var i = 0; i < checkBox.length; i++) {
+            if (checkBox[i].checked) check_arr.push(checkBox[i].value);
+          }
+          var checkBoxNumElement = document.getElementById("checkBoxNum");
+          checkBoxNumElement.innerHTML =
+            "您共选择了" + check_arr.length + "个症状";
+        });
+      }
     </script>
 
     <style type="text/css">
-        body {
-            background-color: #e6e6e6;
-        }
+      body {
+        background-color: #e6e6e6;
+      }
 
-        input {
-            width: 25px;
-            height: 25px;
-            margin: 6px;
-            text-indent: 6px;
-        }
+      input {
+        width: 25px;
+        height: 25px;
+        margin: 6px;
+        text-indent: 6px;
+      }
 
-        table {
-            font-size: 20px;
-        }
+      table {
+        font-size: 20px;
+      }
 
-        label {
-            font-size: 23px;
-        }
+      label {
+        font-size: 23px;
+      }
 
-        textarea {
-            text-indent: 9px;
-        }
+      textarea {
+        text-indent: 9px;
+      }
 
-        #tdcs {
-            width: 90%;
-            height: 44px;
-            padding: 0px 0px 0px 0px;
-            font-size: 18px;
-            line-height: 25px;
-        }
+      #tdcs {
+        width: 90%;
+        height: 44px;
+        padding: 0px 0px 0px 0px;
+        font-size: 18px;
+        line-height: 25px;
+      }
     </style>
-</head>
+  </head>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="onload()">
-    <form id="myform" name="myform" method="post" action="##" onSubmit="return CheckForm();">
-
-    <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <body
+    leftmargin="0"
+    topmargin="0"
+    marginwidth="0"
+    marginheight="0"
+    onload="onload()"
+  >
+    <form
+      id="myform"
+      name="myform"
+      method="post"
+      action="##"
+      onSubmit="return CheckForm();"
+    >
+      <table
+        width="95%"
+        border="0"
+        align="center"
+        cellpadding="0"
+        cellspacing="0"
+      >
         <tr>
-
-            <td colspan="2" style="padding: 20px; font-size: 33px; text-align: center;">
-                健康症状自检表
-            </td>
+          <td
+            colspan="2"
+            style="padding: 20px; font-size: 33px; text-align: center"
+          >
+            健康症状自检表
+          </td>
         </tr>
 
-
-
+        <tr>
+          <td style="width: 40%">
+            <input
+              id="tdcs"
+              placeholder="姓名·必填"
+              type="text"
+              maxlength="15"
+              name="name"
+            />
+          </td>
+          <td>
+            <input
+              id="tdcs"
+              placeholder="ID·必填"
+              type="text"
+              maxlength="11"
+              name="phone"
+            />
+          </td>
+        </tr>
+        <table
+          align="center"
+          cellspacing="0"
+          cellpadding="0"
+          width="95%"
+          border="0"
+        >
+          <tbody>
             <tr>
-                <td style=" width: 40%;
-  
-"><input id="tdcs" placeholder="姓名·必填" type="text" maxlength="15" name="name" />
-                </td>
-                <td> <input id="tdcs" placeholder="手机·必填" type="text" maxlength="11" name="phone" />
-                </td>
-            </tr>
-    <table align="center" cellspacing="0" cellpadding="0" width="95%" border="0">
-        <tbody>
+              <td>
+                <input
+                  name="gender"
+                  type="radio"
+                  value="1"
+                  checked="checked"
+                />男 <input name="gender" type="radio" value="0" />女
+              </td>
 
-            <tr>
-                <td>
-                    <input name="gender" type="radio" value="1" checked="checked" />男
-                    <input name="gender" type="radio" value="0" />女
-                </td>
-
-                <td width="45%">
-                    <input id="tdcs" placeholder="年龄" type="text" maxlength="20" name="age" />
-                </td>
-            </tr>
-
-
-            <tr>
-                <td width="30%">
-                    <input id="tdcs" placeholder="身高 cm" type="text" maxlength="9" name="height" />
-                </td>
-                <td>
-                    <input id="tdcs" placeholder="体重 kg" type="text" maxlength="9" name="weight" />
-                </td>
-            </tr>
-
-
-            <tr>
-                <td width="50%">
-                    <input id="tdcs" placeholder="腰围 cm" type="text" maxlength="9" name="waistline" />
-                </td>
-
-                <td>
-                    <input id="tdcs" placeholder="血糖 mmol/L" type="text" maxlength="20" name="blood_sugar" />
-                </td>
-            </tr>
-
-            <tr>
-                <td width="50%">
-                    <input id="tdcs" placeholder="收缩压 mmHg" type="text" maxlength="120" name="systolic_pressure" />
-                </td>
-                <td>
-                    <input id="tdcs" placeholder="舒张压 mmHg" type="text" maxlength="120" name="diastolic_pressure" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="padding: 10px 0px 15px 9px;">
-                    <textarea style="
-                          padding: 5px 0px 0px 5px;
-                          font-size: 18px;
-                          height: 77px;
-                          width: 96%;
-                        " placeholder="地址" name="address"></textarea>
-                </td>
+              <td width="45%">
+                <input
+                  id="tdcs"
+                  placeholder="年龄"
+                  type="text"
+                  maxlength="20"
+                  name="age"
+                />
+              </td>
             </tr>
 
             <tr>
-                <td colspan="2">
-                    <div style="padding:0px 0px 10px 9px;">
-                        <font color="red">* </font><b>症状选择：</b>
-                    </div>
-                    <div style="padding:0px 0px 0px 11px;" id="checkBox"></div>
-                   
-                    <textarea placeholder="其他症状/手术史/疾病" name="remark" style="
-                        margin:0px 0px 0px 9px;  padding: 9px 0px 0px 9px;
-                        font-size: 18px;
-                            height: 111px; width: 90%;
-                        "></textarea>
-                    <br />
-                </td>
+              <td width="30%">
+                <input
+                  id="tdcs"
+                  placeholder="身高 cm"
+                  type="text"
+                  maxlength="9"
+                  name="height"
+                />
+              </td>
+              <td>
+                <input
+                  id="tdcs"
+                  placeholder="体重 kg"
+                  type="text"
+                  maxlength="9"
+                  name="weight"
+                />
+              </td>
             </tr>
-        </tbody>
-    </table>
-    <p align="center">
-        <input style="width: 180px; height: 50px;" type="button" onclick="CheckForm()" value="提交表格" name="Submit" />
-    </p>
 
-    </table>
-</form>
+            <tr>
+              <td width="50%">
+                <input
+                  id="tdcs"
+                  placeholder="腰围 cm"
+                  type="text"
+                  maxlength="9"
+                  name="waistline"
+                />
+              </td>
 
-</body>
+              <td>
+                <input
+                  id="tdcs"
+                  placeholder="血糖 mmol/L"
+                  type="text"
+                  maxlength="20"
+                  name="blood_sugar"
+                />
+              </td>
+            </tr>
 
+            <tr>
+              <td width="50%">
+                <input
+                  id="tdcs"
+                  placeholder="收缩压 mmHg"
+                  type="text"
+                  maxlength="120"
+                  name="systolic_pressure"
+                />
+              </td>
+              <td>
+                <input
+                  id="tdcs"
+                  placeholder="舒张压 mmHg"
+                  type="text"
+                  maxlength="120"
+                  name="diastolic_pressure"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding: 10px 0px 15px 9px">
+                <textarea
+                  style="
+                    padding: 5px 0px 0px 5px;
+                    font-size: 18px;
+                    height: 77px;
+                    width: 96%;
+                  "
+                  placeholder="地址"
+                  name="address"
+                ></textarea>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <div style="padding: 0px 0px 10px 9px">
+                  <font color="red">* </font><b>症状选择：</b>
+                </div>
+                <div style="padding: 0px 0px 0px 11px" id="checkBox"></div>
+                <div style="padding: 0px 0px 0px 11px" id="checkBoxNum">
+                  您共选择了0个症状
+                </div>
+                <textarea
+                  placeholder="其他症状/手术史/疾病"
+                  name="remark"
+                  style="
+                    margin: 0px 0px 0px 9px;
+                    padding: 9px 0px 0px 9px;
+                    font-size: 18px;
+                    height: 111px;
+                    width: 90%;
+                  "
+                ></textarea>
+                <br />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p align="center">
+          <input
+            style="width: 180px; height: 50px"
+            type="button"
+            onclick="CheckForm()"
+            value="提交表格"
+            name="Submit"
+          />
+        </p>
+      </table>
+    </form>
+  </body>
 </html>
