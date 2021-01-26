@@ -36,6 +36,9 @@
             <el-col :span="24" class="title">身体症状自检表</el-col>
           </el-row>
           <el-row>
+            <el-col :span="24" class="subTitle">{{title}}</el-col>
+          </el-row>
+          <el-row>
             <el-divider><i class="el-icon-s-order"></i></el-divider>
           </el-row>
         </el-header>
@@ -208,6 +211,7 @@
         },
         hasEntryId: false,
         entry_info: 0,
+        title: "",
         category: 3,
         entryNum: "0",
         checkList: [],
@@ -263,7 +267,7 @@
           dataType: "json",
           data: "",
           success: function (response, xml) {
-            if (response.data.category === 6) {
+            if (response.data.category.id === 6) {
               that.category = 6;
               let collectionObj = {};
               let collectionList = [];
@@ -288,7 +292,9 @@
                 }
               });
               that.collectionList = collectionList;
+              that.title = response.data.title.title_name;
             } else {
+              that.title = response.data.title.title_name;
               that.checkList = response.data.entrys;
             }
           },
@@ -485,11 +491,16 @@
       text-align: center;
       font-size: 30px;
     }
+    .subTitle {
+      text-align: center;
+      font-size: 18px;
+      color: #aaa;
+    }
     .textInput {
       font-size: 16px;
     }
     .form {
-      margin-top: 30px;
+      margin-top: 50px;
       width: 100%;
     }
     .demo-form {
