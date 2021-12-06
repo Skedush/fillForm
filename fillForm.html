@@ -175,14 +175,17 @@
             <el-form-item class="fill" label="" prop="remark">
               <el-input
                 class="textInput"
-                placeholder="其他症状|手术史|疾病"
+                placeholder="其他症状|手术史|疾病（最难受、最想调的症状和最难改、最想改的习惯）"
                 type="textarea"
                 v-model="form.remark"
               ></el-input>
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="submitForm('form')"
+              <el-button
+                type="primary"
+                @click="submitForm('form')"
+                :loading="loading"
                 >提交</el-button
               >
               <el-button @click="resetForm('form')">重置</el-button>
@@ -214,7 +217,11 @@
         title: "",
         category: 3,
         entryNum: "0",
+        loading: false,
         checkList: [],
+        backUrl: "https://hh.jkgl.cc/",
+        frontUrl: "https://u.jkgl.cc/",
+        // url: "http://127.0.0.1:8000/entryInfo/" + id + "/",
         collectionList: [],
         form: {
           name: "",
@@ -261,8 +268,7 @@
           // });
         }
         this.ajax({
-          url: `https://w.cjsq.net/entryInfo/${id}/`,
-          // url: "http://127.0.0.1:8000/entryInfo/" + id + "/",
+          url: `${that.backUrl}entryInfo/${id}/`,
           type: "GET",
           dataType: "json",
           data: "",
@@ -370,9 +376,9 @@
               return;
             }
             that.form.entry_info = that.entry_info;
+            that.loading = true;
             that.ajax({
-              url: "https://w.cjsq.net/userEntry/",
-              // url: "http://127.0.0.1:8000/userEntry/",
+              url: `${that.backUrl}userEntry/`,
               type: "POST",
               dataType: "json",
               data: JSON.stringify(that.form),
@@ -380,8 +386,7 @@
                 if (response) {
                   if (response.code === 201 && response.success) {
                     window.location.replace(
-                      "https://f.cjsq.net/#/dashboard/success?num=" +
-                        that.entryNum
+                      `${frontUrl}#/dashboard/success?num=` + that.entryNum
                     );
                   } else {
                     that.$message({
@@ -390,6 +395,7 @@
                       type: "error",
                     });
                   }
+                  that.loading = false;
                 }
                 //请求成功后执行的代码
               },
