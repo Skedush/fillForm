@@ -22,7 +22,7 @@
       <el-container v-if="!hasEntryId">
         <el-header>
           <el-row>
-            <el-col :span="24" class="title">身体自测管理系统</el-col>
+            <el-col :span="24" class="title">自检系统</el-col>
           </el-row>
         </el-header>
         <el-row>
@@ -33,7 +33,7 @@
       <el-container v-if="hasEntryId">
         <el-header>
           <el-row>
-            <el-col :span="24" class="title">身体症状自检表</el-col>
+            <el-col :span="24" class="title">自检系统</el-col>
           </el-row>
           <el-row>
             <el-col :span="24" class="subTitle">{{title}}</el-col>
@@ -49,6 +49,10 @@
             ref="form"
             inline
             class="demo-form"
+            v-loading="getDataLoading"
+            element-loading-text="加载中,等待3-10秒..."
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(0, 0, 0, 0.7)"
           >
             <el-form-item class="item" label="" prop="name">
               <el-input
@@ -218,10 +222,14 @@
         category: 3,
         entryNum: "0",
         loading: false,
+        getDataLoading: false,
         checkList: [],
-        backUrl: "https://hh.jkgl.cc/",
-        frontUrl: "https://u.jkgl.cc/",
-        // url: "http://127.0.0.1:8000/entryInfo/" + id + "/",
+
+        // backUrl: "https://hh.jkgl.cc/",
+        backUrl: "https://w.cjsq.net/",
+        // backUrl: "http://127.0.0.1:8000/",
+        // frontUrl: "https://u.jkgl.cc/",
+        frontUrl: "https://f.cjsq.net/",
         collectionList: [],
         form: {
           name: "",
@@ -267,12 +275,14 @@
           //   type: "error"
           // });
         }
+        that.getDataLoading = true;
         this.ajax({
           url: `${that.backUrl}entryInfo/${id}/`,
           type: "GET",
           dataType: "json",
           data: "",
           success: function (response, xml) {
+            that.getDataLoading = false;
             if (response.data.category.id === 6) {
               that.category = 6;
               let collectionObj = {};
@@ -386,7 +396,7 @@
                 if (response) {
                   if (response.code === 201 && response.success) {
                     window.location.replace(
-                      `${frontUrl}#/dashboard/success?num=` + that.entryNum
+                      `${that.frontUrl}#/dashboard/success?num=` + that.entryNum
                     );
                   } else {
                     that.$message({
